@@ -1,3 +1,5 @@
+#include <mutex>
+#include <optional>
 #include <variant>
 
 using namespace std;
@@ -88,6 +90,85 @@ template <typename T, typename E> class Result : public variant<T, E> {
 	/// @param g The function to call if the result is an error.
 	/// @return The new value.
 	T map_or_else(function<T(E)> f, function<T(E)> g);
+};
+
+const int BTREE_DEFAULT_ORDER = 4;
+const int BTREE_DEFAULT_ITEMS = BTREE_DEFAULT_ORDER - 1;
+
+template <typename K, typename V> class BTree {
+  public:
+	BTree(int order = BTREE_DEFAULT_ORDER);
+	~BTree();
+
+	/// @brief Inserts a key-value pair into the BTree.
+	/// @param key The key to insert.
+	/// @param value The value to insert.
+	void insert(K key, V value);
+
+	/// @brief Removes a key-value pair from the BTree.
+	/// @param key The key to remove.
+	void remove(K key);
+
+	/// @brief Gets the value associated with the given key.
+	/// @param key The key to search for.
+	/// @return The value associated with the key.
+	optional<V> get(K key);
+
+	/// @brief Gets the value associated with the given key, or returns the default value if the key is not found.
+	/// @param key The key to search for.
+	/// @param default_value The value to return if the key is not found.
+	/// @return The value associated with the key, or the default value.
+	V get_or(K key, V default_value);
+
+	/// @brief Gets the value associated with the given key, or returns the result of the given function if the key is
+	/// not found.
+	/// @param key The key to search for.
+	/// @param f The function to call if the key is not found.
+	/// @return The value associated with the key, or the result of the function.
+	V get_or_else(K key, function<V(K)> f);
+
+  private:
+	int order;
+	K *keys;
+	V *values;
+	BTree<K, V> *children;
+};
+
+template <typename T> class MutexGuard;
+
+/// A wrapper around `std::mutex` that automatically unlocks the mutex when it goes out of scope.
+template <typename T> class Mutex {
+  public:
+	/// @brief Construct a new Mutex object
+	/// @param value The value to protect.
+	Mutex(T value);
+
+	/// @brief Destroy the Mutex object
+	~Mutex();
+
+	/// @brief Lock the mutex.
+	MutexGuard<T> lock();
+
+  private:
+	std::mutex mutex;
+	T value;
+};
+
+template <typename T> class MutexGuard {
+  public:
+	/// @brief Construct a new Mutex Guard object
+	/// @param mutex The mutex to guard.
+	MutexGuard(Mutex<T> *mutex);
+
+	/// @brief Destroy the Mutex Guard object
+	~MutexGuard();
+
+	/// @brief Get the value of the mutex.
+	/// @return The value of the mutex.
+	T *value();
+
+  private:
+	Mutex<T> *mutex;
 };
 
 } // namespace Util

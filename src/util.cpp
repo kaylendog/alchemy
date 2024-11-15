@@ -116,6 +116,54 @@ template <typename T, typename E> T Result<T, E>::map_or_else(function<T(E)> f, 
 	}
 }
 
+template <typename K, typename V> BTree<K, V>::BTree(int order) {
+	this->order = order;
+	// alloc
+	this->keys = new K[order - 1];
+	this->values = new V[order - 1];
+	this->children = new BTree<K, V> *[order];
+}
+
+template <typename K, typename V> BTree<K, V>::~BTree() {
+	// dealloc
+	delete[] this->keys;
+	delete[] this->values;
+	delete[] this->children;
+}
+
+template <typename K, typename V> void BTree<K, V>::insert(K key, V value) {
+	// for each key
+	for (int i = 0; i < this->order - 1; i++) {
+		if (this->keys[i] <= key) {
+			this->values[i] = value;
+			return;
+		}
+	}
+}
+
+template <typename T> Mutex<T>::Mutex(T value) {
+	this->mutex = new std::mutex();
+	this->value = value;
+}
+
+template <typename T> Mutex<T>::~Mutex() {
+	delete this->mutex;
+	delete this->value;
+}
+
+template <typename T> MutexGuard<T> Mutex<T>::lock() {
+	this->mutex->lock();
+	return MutexGuard(this);
+}
+
+template <typename T> MutexGuard<T>::MutexGuard(Mutex<T> *mutex) {
+	this->mutex = mutex;
+}
+
+template <typename T> MutexGuard<T>::~MutexGuard() {
+	this->mutex->mutex->unlock();
+}
+
 } // namespace Util
 
 } // namespace Alchemy
