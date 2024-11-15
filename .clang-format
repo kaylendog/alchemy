@@ -1,0 +1,31 @@
+BasedOnStyle: Microsoft
+IndentWidth: 4
+TabWidth: 4
+UseTab: Always
+
+# Control spaces around operators and keywords
+SpaceBeforeParens: ControlStatements # Space before parentheses in control statements
+SpaceAfterCStyleCast: false # No space after C-style casts
+
+# Brace positioning
+BraceWrapping:
+    AfterClass: false # Same line for class braces
+    AfterControlStatement: false # Same line for control statements (e.g., if, for)
+    AfterEnum: false # Same line for enum braces
+    AfterFunction: false # Same line for function braces
+    AfterNamespace: false # Same line for namespace braces
+    AfterStruct: false # Same line for struct braces
+    SplitEmptyFunction: false # Keep empty function braces on one line
+    SplitEmptyRecord: false # Keep empty class/struct braces on one line
+    SplitEmptyNamespace: false # Keep empty namespace braces on one line
+
+# Indentation and alignment for parameters and lists
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignAfterOpenBracket: Align # Align parameters after open bracket
+AllowShortFunctionsOnASingleLine: Empty # Keep short functions on a single line
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+
+# Limit for the maximum line length (common for Visual Studio)
+ColumnLimit: 120

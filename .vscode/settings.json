@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"*.cfg": "plaintext",
+		"variant": "cpp",
+		"functional": "cpp"
+	}
+}
