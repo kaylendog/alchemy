@@ -1,5 +1,6 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Iinclude -Wall -Wextra -Werror -pedantic -O3
+CXXFLAGS := -std=c++17 -Iinclude -I/opt/homebrew/include -I/Users/skyezer/Library/Application\ Support/VulkanSDK/1.3.296.0/macOS/include -Wall -Wextra -Werror -pedantic -O3
+LDFLAGS := -L/opt/homebrew/lib -L/Users/skyezer/Library/Application\ Support/VulkanSDK/1.3.296.0/macOS/lib -lvulkan -lglfw
 
 SRC_DIR := src
 INC_DIR := include
@@ -15,7 +16,7 @@ ALCHEMY_OBJ := $(BUILD_DIR)/alchemy.o
 all: $(EXEC)
 
 $(EXEC): $(OBJS) $(ALCHEMY_OBJ) | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

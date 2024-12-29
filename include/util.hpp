@@ -136,7 +136,7 @@ template <typename K, typename V> class BTree {
 
 template <typename T> class MutexGuard;
 
-/// A wrapper around `std::mutex` that automatically unlocks the mutex when it goes out of scope.
+/// A wrapper around `std::mutex` providing a mutex-protected smart pointer.
 template <typename T> class Mutex {
   public:
 	/// @brief Construct a new Mutex object
@@ -154,6 +154,8 @@ template <typename T> class Mutex {
 	T value;
 };
 
+/// @brief A smart pointer that unlocks its mutex when it goes out of scope.
+/// @tparam T The type of the value.
 template <typename T> class MutexGuard {
   public:
 	/// @brief Construct a new Mutex Guard object
@@ -162,10 +164,6 @@ template <typename T> class MutexGuard {
 
 	/// @brief Destroy the Mutex Guard object
 	~MutexGuard();
-
-	/// @brief Get the value of the mutex.
-	/// @return The value of the mutex.
-	T *value();
 
   private:
 	Mutex<T> *mutex;
