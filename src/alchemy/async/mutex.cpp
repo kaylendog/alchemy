@@ -1,11 +1,9 @@
+#include <alchemy/async/mutex.hpp>
 #include <mutex>
-#include <util/mutex.hpp>
 
 namespace Alchemy {
 
-namespace Util {
-
-using namespace std;
+namespace Async {
 
 template <typename T> Mutex<T>::Mutex(T value) {
 	this->mutex = new std::mutex();
@@ -30,6 +28,6 @@ template <typename T> MutexGuard<T>::~MutexGuard() {
 	this->mutex->mutex->unlock();
 }
 
-} // namespace Util
+} // namespace Async
 
 } // namespace Alchemy

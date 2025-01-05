@@ -58,16 +58,26 @@ if(NOT DEFINED ENV{VULKAN_SDK})
 endif()
 find_package(Vulkan REQUIRED)
 
+# file formats - png, jpeg, etc.
+find_package(PNG REQUIRED)
+find_package(JPEG REQUIRED)
+
 file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
 file(GLOB_RECURSE HEADERS "${CMAKE_SOURCE_DIR}/include/*.hpp")
-file(GLOB_RECURSE TESTS "${CMAKE_SOURCE_DIR}/test/*.cpp")
+file(GLOB_RECURSE TESTS "${CMAKE_SOURCE_DIR}/tests/*.cpp")
 
-list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/src/alchemy.cpp")
+list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/src/alchemy/alchemy.cpp")
 
 add_library(engine ${SOURCES} ${HEADERS})
 target_include_directories(engine PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_include_directories(engine PUBLIC "${glm_SOURCE_DIR}")
+target_include_directories(engine PUBLIC "${glfw_SOURCE_DIR}/include")
+target_include_directories(engine PUBLIC "${Vulkan_INCLUDE_DIRS}")
+target_include_directories(engine PUBLIC "${PNG_INCLUDE_DIRS}")
+target_include_directories(engine PUBLIC "${JPEG_INCLUDE_DIRS}")
 
-add_executable(alchemy "${CMAKE_SOURCE_DIR}/src/alchemy.cpp")
+
+add_executable(alchemy "${CMAKE_SOURCE_DIR}/src/alchemy/alchemy.cpp")
 target_link_libraries(alchemy PRIVATE engine Vulkan::Vulkan glfw glm)
 
 enable_testing()

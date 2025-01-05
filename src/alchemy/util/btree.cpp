@@ -1,4 +1,8 @@
-#include <util/btree.hpp>
+#include <alchemy/util/btree.hpp>
+
+namespace Alchemy {
+
+namespace Util {
 
 template <typename K, typename V> BTree<K, V>::BTree(int order) {
 	this->order = order;
@@ -24,3 +28,6 @@ template <typename K, typename V> void BTree<K, V>::insert(K key, V value) {
 		}
 	}
 }
+
+} // namespace Util
+} // namespace Alchemy

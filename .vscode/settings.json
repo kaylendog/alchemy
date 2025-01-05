@@ -63,6 +63,8 @@
 		"compare": "cpp",
 		"concepts": "cpp",
 		"algorithm": "cpp",
-		"iostream": "cpp"
+		"iostream": "cpp",
+		"thread": "cpp",
+		"filesystem": "cpp"
 	}
 }

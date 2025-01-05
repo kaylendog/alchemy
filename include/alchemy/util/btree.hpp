@@ -1,5 +1,12 @@
+#include <functional>
+#include <optional>
+
 const int BTREE_DEFAULT_ORDER = 4;
 const int BTREE_DEFAULT_ITEMS = BTREE_DEFAULT_ORDER - 1;
+
+namespace Alchemy {
+
+namespace Util {
 
 template <typename K, typename V> class BTree {
   public:
@@ -18,7 +25,7 @@ template <typename K, typename V> class BTree {
 	/// @brief Gets the value associated with the given key.
 	/// @param key The key to search for.
 	/// @return The value associated with the key.
-	optional<V> get(K key);
+	std::optional<V> get(K key);
 
 	/// @brief Gets the value associated with the given key, or returns the default value if the key is not found.
 	/// @param key The key to search for.
@@ -31,7 +38,7 @@ template <typename K, typename V> class BTree {
 	/// @param key The key to search for.
 	/// @param f The function to call if the key is not found.
 	/// @return The value associated with the key, or the result of the function.
-	V get_or_else(K key, function<V(K)> f);
+	V get_or_else(K key, std::function<V(K)> f);
 
   private:
 	int order;
@@ -39,3 +46,6 @@ template <typename K, typename V> class BTree {
 	V *values;
 	BTree<K, V> *children;
 };
+
+} // namespace Util
+} // namespace Alchemy

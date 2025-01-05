@@ -1,10 +1,8 @@
 #include <mutex>
 
-using namespace std;
-
 namespace Alchemy {
 
-namespace Util {
+namespace Async {
 
 template <typename T> class MutexGuard;
 
@@ -41,6 +39,6 @@ template <typename T> class MutexGuard {
 	Mutex<T> *mutex;
 };
 
-} // namespace Util
+} // namespace Async
 
 } // namespace Alchemy

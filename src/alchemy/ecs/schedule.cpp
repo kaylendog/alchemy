@@ -1,11 +1,10 @@
-#include <memory>
+#include <alchemy/ecs/schedule.hpp>
 
 namespace Alchemy {
 
 namespace ECS {
 
-/// @brief A component.
-class Component {};
+SystemSet::SystemSet() {}
 
 } // namespace ECS
 

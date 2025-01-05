@@ -16,6 +16,13 @@ template <class... Args> class System : std::function<void(Args...)> {
 	~System() {}
 };
 
+/// @brief A system set is a named grouping of systems.
+class SystemSet {
+  public:
+	SystemSet();
+	~SystemSet();
+};
+
 } // namespace ECS
 
 } // namespace Alchemy
