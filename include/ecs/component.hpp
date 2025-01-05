@@ -2,11 +2,11 @@
 
 namespace Alchemy {
 
-namespace Component {
+namespace ECS {
 
 /// @brief A component.
 class Component {};
 
-} // namespace Component
+} // namespace ECS
 
 } // namespace Alchemy

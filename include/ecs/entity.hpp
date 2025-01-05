@@ -2,11 +2,11 @@
 
 namespace Alchemy {
 
-namespace Entity {
+namespace ECS {
 
 /// @brief The type of an entity ID.
-typedef uint64_t ID;
+typedef uint64_t EntityID;
 
-} // namespace Entity
+} // namespace ECS
 
 } // namespace Alchemy

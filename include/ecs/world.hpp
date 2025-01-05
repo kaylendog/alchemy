@@ -3,6 +3,8 @@
 
 namespace Alchemy {
 
+namespace ECS {
+
 class World {
   public:
 	/// @brief  Constructor.
@@ -14,5 +16,7 @@ class World {
 	/// @brief The entity ID counter.
 	std::mutex entity_id_counter_mutex;
 };
+
+} // namespace ECS
 
 } // namespace Alchemy

@@ -40,17 +40,6 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(glfw)
 
-# glad
-message(STATUS "Fetching glad")
-FetchContent_Declare(
-    glad
-    GIT_REPOSITORY https://github.com/Dav1dde/glad.git
-    GIT_TAG v2.0.8
-    GIT_SHALLOW TRUE
-    GIT_PROGRESS TRUE
-)
-FetchContent_MakeAvailable(glad)
-
 # glm
 message(STATUS "Fetching glm")
 FetchContent_Declare(
@@ -79,7 +68,7 @@ add_library(engine ${SOURCES} ${HEADERS})
 target_include_directories(engine PUBLIC "${CMAKE_SOURCE_DIR}/include")
 
 add_executable(alchemy "${CMAKE_SOURCE_DIR}/src/alchemy.cpp")
-target_link_libraries(alchemy PRIVATE engine Vulkan::Vulkan glfw glad glm)
+target_link_libraries(alchemy PRIVATE engine Vulkan::Vulkan glfw glm)
 
 enable_testing()
 include(GoogleTest)

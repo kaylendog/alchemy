@@ -3,6 +3,8 @@
 
 namespace Alchemy {
 
+namespace ECS {
+
 /// @brief A class representing a schedule of systems to run.
 class Schedule {
   public:
@@ -26,5 +28,7 @@ class SystemSet {
 	/// @brief Destructor.
 	~SystemSet();
 };
+
+} // namespace ECS
 
 } // namespace Alchemy
