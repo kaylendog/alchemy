@@ -1,5 +1,5 @@
-#include <mutex>
-#include <optional>
+#pragma once
+
 #include <variant>
 
 using namespace std;
@@ -56,7 +56,7 @@ template <typename T, typename E> class Result : public variant<T, E> {
 	/// @brief Unwraps the result, or returns the result of the given function if the result is an error.
 	/// @param f The function to call if the result is an error.
 	/// @return The ok value or the result of the function.
-	T unwrap_or_else(function<T(E)> f);
+	T unwrap_or_else(std::function<T(E)> f);
 
 	/// @brief Maps the ok value to a new value using the given function.
 	/// @param default_value The value to return if the result is an error.
@@ -66,30 +66,30 @@ template <typename T, typename E> class Result : public variant<T, E> {
 	/// @brief Maps the error to a new value using the given function.
 	/// @param f The function to call if the result is an error.
 	/// @return The new value.
-	E unwrap_err_or_else(function<E(T)> f);
+	E unwrap_err_or_else(std::function<E(T)> f);
 
 	/// @brief Maps the ok value to a new value using the given function.
 	/// @param f The function to call if the result is an ok value.
 	/// @return The new value.
-	T map(function<T(E)> f);
+	T map(std::function<T(E)> f);
 
 	/// @brief Maps the error to a new value using the given function.
 	/// @param f The function to call if the result is an error.
 	/// @return The new value.
-	E map_err(function<E(T)> f);
+	E map_err(std::function<E(T)> f);
 
 	/// @brief Maps the ok value to a new value using the given function, or returns the default value if the result is
 	/// an error.
 	/// @param default_value The value to return if the result is an error.
 	/// @param f The function to call if the result is an ok value.
 	/// @return The new value.
-	T map_or(T default_value, function<T(E)> f);
+	T map_or(T default_value, std::function<T(E)> f);
 
 	/// @brief Maps the ok value to a new value using the given function, or returns the result of the given function if
 	/// @param f The function to call if the result is an ok value.
 	/// @param g The function to call if the result is an error.
 	/// @return The new value.
-	T map_or_else(function<T(E)> f, function<T(E)> g);
+	T map_or_else(std::function<T(E)> f, std::function<T(E)> g);
 };
 
 } // namespace Util

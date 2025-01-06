@@ -21,6 +21,9 @@ class SystemSet {
   public:
 	SystemSet();
 	~SystemSet();
+
+  private:
+	std::vector<System<>> systems;
 };
 
 } // namespace ECS

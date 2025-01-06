@@ -65,6 +65,8 @@
 		"algorithm": "cpp",
 		"iostream": "cpp",
 		"thread": "cpp",
-		"filesystem": "cpp"
+		"filesystem": "cpp",
+		"__availability": "cpp",
+		"iterator": "cpp"
 	}
 }

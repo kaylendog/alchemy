@@ -1,8 +1,13 @@
+#pragma once
+
 #include <map>
 #include <string>
 
 #include <alchemy/asset/asset.hpp>
 #include <alchemy/asset/loader.hpp>
+#include <alchemy/util/result.hpp>
+
+using namespace Alchemy::Util;
 
 namespace Alchemy {
 
@@ -20,7 +25,7 @@ class Manager {
 	/// @brief Loads an asset from the given path.
 	/// @param path The path to the asset.
 	/// @return The asset.
-	Asset load(std::string path);
+	Result<Asset, AssetLoadError> load(std::string path);
 
 	/// @brief Unloads an asset.
 	/// @param asset The asset to unload.
@@ -28,7 +33,7 @@ class Manager {
 
   private:
 	std::map<std::string, Asset> assets;
-	std::vector<Loader<Asset>> loaders;
+	std::vector<Loader> loaders;
 };
 
 } // namespace Asset

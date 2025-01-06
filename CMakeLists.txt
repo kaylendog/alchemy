@@ -76,7 +76,6 @@ target_include_directories(engine PUBLIC "${Vulkan_INCLUDE_DIRS}")
 target_include_directories(engine PUBLIC "${PNG_INCLUDE_DIRS}")
 target_include_directories(engine PUBLIC "${JPEG_INCLUDE_DIRS}")
 
-
 add_executable(alchemy "${CMAKE_SOURCE_DIR}/src/alchemy/alchemy.cpp")
 target_link_libraries(alchemy PRIVATE engine Vulkan::Vulkan glfw glm)
 
@@ -86,5 +85,6 @@ include(GoogleTest)
 if(TESTS)
     add_executable(tests ${TESTS})
     target_link_libraries(tests PRIVATE engine GTest::gtest_main)
+    target_include_directories(tests PUBLIC "${CMAKE_SOURCE_DIR}/include")
     gtest_discover_tests(tests)
 endif()

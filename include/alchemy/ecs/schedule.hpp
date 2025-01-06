@@ -5,6 +5,7 @@ namespace Alchemy {
 
 namespace ECS {
 
+/// @brief A node in the schedule.
 class ScheduleNode {
   public:
 	ScheduleNode();
